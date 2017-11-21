@@ -5,7 +5,6 @@ import { List, ListItem } from 'react-native-elements'
 
 import { loadDecks } from './../actions'
 
-
 class Home extends React.Component {
   componentDidMount() {
     this.props.loadDecks()
@@ -17,7 +16,10 @@ class Home extends React.Component {
     return (
       <List containerStyle={styles.list}>
         {Object.keys(decks).map((deckName) => (
-          <ListItem key={deckName} title={deckName} />
+          <ListItem 
+            key={deckName} 
+            title={decks[deckName].title} 
+            onPress={() => this.props.navigation.navigate('DeckDetail',{ deckName: deckName })} />
         ))}
       </List>
     )
@@ -27,8 +29,7 @@ class Home extends React.Component {
 const styles = StyleSheet.create({
   list: {
     flex: 1,
-    backgroundColor: '#fff',
-    marginBottom: 20
+    backgroundColor: '#fff'
   },
 })
 
