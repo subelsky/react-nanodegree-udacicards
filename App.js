@@ -7,6 +7,8 @@ import configureStore from './store/ConfigureStore';
 import UdaciStatusBar from './components/UdaciStatusBar'
 import Home from './components/Home'
 import DeckDetail from './components/DeckDetail'
+import NewCard from './components/NewCard'
+import Quiz from './components/Quiz'
 
 const MainNavigator = StackNavigator({
   Home: {
@@ -15,10 +17,25 @@ const MainNavigator = StackNavigator({
       title: 'UdaciCards'
     }
   },
+
   DeckDetail: {
     screen: DeckDetail,
     navigationOptions: ({ navigation }) => ({
       title: navigation.state.params.deckName
+    })
+  },
+
+  NewCard: {
+    screen: NewCard,
+    navigationOptions: {
+      title: 'New Card'
+    }
+  },
+
+  Quiz: {
+    screen: Quiz,
+    navigationOptions: ({ navigation }) => ({
+      title: 'Quiz'
     })
   }
 })
