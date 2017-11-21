@@ -9,6 +9,9 @@
 # production
 /build
 
+# expo
+/.expo/packager-info.json
+
 # misc
 .DS_Store
 .env.local
