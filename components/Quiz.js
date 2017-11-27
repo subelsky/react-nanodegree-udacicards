@@ -11,7 +11,10 @@ class Quiz extends React.Component {
   }
 
   nextCard() {
-    this.setState((prevState) => ({ cardNum: prevState.cardNum + 1 }))
+    this.setState((prevState) => ({ 
+      cardNum: prevState.cardNum + 1,
+      answerShowing: false
+    }))
   }
 
   correct() {
@@ -24,10 +27,18 @@ class Quiz extends React.Component {
   }
 
   render() {
-    const { deckName, deck } = this.props
-    const { questions } = deck
+    const { questions } = this.props
     const { cardNum, answerShowing } = this.state
     const card = questions[cardNum - 1]
+
+    if (card === undefined) {
+      return (
+        <View style={styles.container}>
+          <Text h2>You answered {this.state.numCorrect} question(s) correctly out of {questions.length} total.</Text>
+        </View>
+      )
+    }
+
     const { question, answer } = card
 
     return (
@@ -37,7 +48,7 @@ class Quiz extends React.Component {
 
         {answerShowing ?  
           <View>
-            <Text h3>{answer}</Text>
+            <Text h2>{answer}</Text>
 
             <Button
               buttonStyle={styles.correctButton}
@@ -84,9 +95,9 @@ const styles = StyleSheet.create({
 
 const mapStateToProps = (state,ownProps) => {
   const { deckName } = ownProps.navigation.state.params
-  const deck = state[deckName]
+  const questions = state[deckName].questions
 
-  return { deckName, deck }
+  return { questions }
 }
 
 export default connect(mapStateToProps)(Quiz)
