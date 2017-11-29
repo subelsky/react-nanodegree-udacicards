@@ -21,6 +21,10 @@ class Home extends React.Component {
             title={decks[deckName].title} 
             onPress={() => this.props.navigation.navigate('DeckDetail',{ deckName: deckName })} />
         ))}
+        <ListItem
+          key='newDeck'
+          title='Add a new deck...'
+          onPress={() => this.props.navigation.navigate('NewDeck')} />
       </List>
     )
   }

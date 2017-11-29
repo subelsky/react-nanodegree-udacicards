@@ -38,22 +38,25 @@ function formatDecks(results) {
 }
 
 export function fetchDecksFromStorage() {
+  //AsyncStorage.clear()
   return AsyncStorage.getItem(DECK_STORAGE_KEY).
     then(formatDecks)
 }
 
-//export function submitEntry ({ entry, key }) {
-  //return AsyncStorage.mergeItem(CALENDAR_STORAGE_KEY, JSON.stringify({
-    //[key]: entry
-  //}))
-//}
+export function addDeckToStorage(newDeck) {
+  return fetchDecksFromStorage().
+    then((decks) => {
+      decks[newDeck.title] = newDeck
+      return AsyncStorage.setItem(DECK_STORAGE_KEY,JSON.stringify(decks))
+    }
+  )
+}
 
-//export function removeEntry (key) {
-  //return AsyncStorage.getItem(CALENDAR_STORAGE_KEY)
-    //.then((results) => {
-      //const data = JSON.parse(results)
-      //data[key] = undefined
-      //delete data[key]
-      //AsyncStorage.setItem(CALENDAR_STORAGE_KEY, JSON.stringify(data))
-    //})
-//}
+export function addQuestionToDeckStorage(deckName,question) {
+  return fetchDecksFromStorage().
+    then((decks) => {
+      decks[deckName].questions.push(question)
+      return AsyncStorage.setItem(DECK_STORAGE_KEY,JSON.stringify(decks))
+    }
+  )
+}

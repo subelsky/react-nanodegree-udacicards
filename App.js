@@ -8,6 +8,7 @@ import UdaciStatusBar from './components/UdaciStatusBar'
 import Home from './components/Home'
 import DeckDetail from './components/DeckDetail'
 import NewCard from './components/NewCard'
+import NewDeck from './components/NewDeck'
 import Quiz from './components/Quiz'
 
 const MainNavigator = StackNavigator({
@@ -23,6 +24,13 @@ const MainNavigator = StackNavigator({
     navigationOptions: ({ navigation }) => ({
       title: navigation.state.params.deckName
     })
+  },
+
+  NewDeck: {
+    screen: NewDeck,
+    navigationOptions: {
+      title: 'New Deck'
+    }
   },
 
   NewCard: {

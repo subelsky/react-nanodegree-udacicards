@@ -23,10 +23,12 @@ class DeckDetail extends React.Component {
           onPress={() => navigation.navigate('NewCard', { deckName })}
           title='Add a Card' />
 
-        <Button
-          buttonStyle={styles.button}
-          onPress={() => navigation.navigate('Quiz', { deckName })}
-          title='Start Quiz' />
+        {cardCount > 0 &&
+          <Button
+            buttonStyle={styles.button}
+            onPress={() => navigation.navigate('Quiz', { deckName })}
+            title='Start Quiz' />
+        }
       </View>
     )
   }
