@@ -18,27 +18,32 @@ class DeckDetail extends React.Component {
           {cardCount === 1 ? ' card' : ' cards'}
         </Text>
 
-        <Button
-          buttonStyle={styles.button}
-          onPress={() => navigation.navigate('NewCard', { deckName })}
-          title='Add a Card' />
-
-        {cardCount > 0 &&
+        <View style={styles.buttons}>
           <Button
             buttonStyle={styles.button}
-            onPress={() => navigation.navigate('Quiz', { deckName })}
-            title='Start Quiz' />
-        }
+            onPress={() => navigation.navigate('NewCard', { deckName })}
+            title='Add a Card' />
+
+          {cardCount > 0 &&
+            <Button
+              buttonStyle={styles.button}
+              onPress={() => navigation.navigate('Quiz', { deckName })}
+              title='Start Quiz' />
+          }
+        </View>
       </View>
     )
   }
 }
 
 const styles = StyleSheet.create({
+  buttons: {
+    alignItems: 'stretch',
+    width: '100%'
+  },
+
   button: {
-    //flex: 1,
-    //flexDirection: 'row',
-    //alignItems: 'center'
+    margin: 10
   },
 
   container: {

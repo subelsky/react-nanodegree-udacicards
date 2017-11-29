@@ -37,16 +37,21 @@ class NewCard extends React.Component {
         <FormLabel>Answer</FormLabel>
         <FormInput value={answer} onChangeText={(e) => this.onChangeAnswer(e)} />
 
-        <Button title='Save' onPress={() => this.save()} />
+        <Button title='Save' style={styles.button} onPress={() => this.save()} />
       </View>
     )
   }
 }
 
 const styles = StyleSheet.create({
+  button: {
+    width: '100%',
+    marginTop: 10
+  },
+
   container: {
     flex: 1,
-    alignItems: 'center',
+    alignItems: 'stretch',
     justifyContent: 'center',
     backgroundColor: '#fff'
   }
