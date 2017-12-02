@@ -2,6 +2,10 @@ import React from 'react'
 import { StyleSheet, View } from 'react-native'
 import { connect } from 'react-redux'
 import { Text, Button } from 'react-native-elements'
+import {
+  clearLocalNotification,
+  setLocalNotification
+} from '../utils/notifications'
 
 class Quiz extends React.Component {
   state = {
@@ -31,6 +35,7 @@ class Quiz extends React.Component {
     const { cardNum, answerShowing } = this.state
     const card = questions[cardNum - 1]
 
+
     if (card === undefined) {
       return (
         <View style={styles.container}>
@@ -38,6 +43,8 @@ class Quiz extends React.Component {
         </View>
       )
     }
+
+    clearLocalNotification().then(setLocalNotification)
 
     const { question, answer } = card
 

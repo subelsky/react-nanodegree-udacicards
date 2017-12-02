@@ -10,6 +10,7 @@ import DeckDetail from './components/DeckDetail'
 import NewCard from './components/NewCard'
 import NewDeck from './components/NewDeck'
 import Quiz from './components/Quiz'
+import { setLocalNotification } from './utils/notifications'
 
 const MainNavigator = StackNavigator({
   Home: {
@@ -51,6 +52,10 @@ const MainNavigator = StackNavigator({
 const store = configureStore()
 
 export default class App extends React.Component {
+  componentDidMount() {
+    setLocalNotification()
+  }
+
   render() {
     return (
       <Provider store={store}>
