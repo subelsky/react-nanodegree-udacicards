@@ -5,8 +5,8 @@ import { Text, Button } from 'react-native-elements'
 
 class DeckDetail extends React.Component {
   render() {
-    const { navigation, deckName, deck } = this.props
-    const { title, questions } = deck
+    const { navigation, deckName, deck = {} } = this.props
+    const { title, questions = [] } = deck
     const cardCount = questions.length
 
     return (

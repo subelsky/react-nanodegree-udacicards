@@ -2,7 +2,9 @@ import React from 'react'
 import { StyleSheet, View } from 'react-native'
 import { connect } from 'react-redux'
 import { Button, FormLabel, FormInput } from 'react-native-elements'
+import { NavigationActions } from 'react-navigation'
 import { createDeck } from  './../actions'
+
 
 class NewDeck extends React.Component {
   state = {
@@ -15,7 +17,13 @@ class NewDeck extends React.Component {
 
   save() {
     this.props.createDeck(this.state.title)
-    this.props.navigation.navigate('Home')
+
+    const navigateAction = NavigationActions.navigate({
+      routeName: 'DeckDetail',
+      params: { deckName: this.state.title },
+    })
+
+    this.props.navigation.dispatch(navigateAction)
   }
 
   render() {
