@@ -31,7 +31,8 @@ class Quiz extends React.Component {
   }
 
   render() {
-    const { questions } = this.props
+    const { navigation, questions } = this.props
+    const { deckName } = navigation.state.params
     const { cardNum, answerShowing } = this.state
     const card = questions[cardNum - 1]
 
@@ -40,6 +41,10 @@ class Quiz extends React.Component {
       return (
         <View style={styles.container}>
           <Text h2>You answered {this.state.numCorrect} question(s) correctly out of {questions.length} total.</Text>
+          <Button
+            buttonStyle={styles.backButton}
+            onPress={() => navigation.navigate('DeckDetail', { deckName })} 
+            title={`Back to ${deckName}`} />
         </View>
       )
     }
@@ -85,6 +90,10 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: 'stretch',
     backgroundColor: '#fff'
+  },
+
+  backButton: {
+    backgroundColor: '#0f0'
   },
 
   answerButton: {
