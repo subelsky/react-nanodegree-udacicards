@@ -18,7 +18,7 @@ class Home extends React.Component {
         {Object.keys(decks).map((deckName) => (
           <ListItem 
             key={deckName} 
-            title={decks[deckName].title} 
+            title={`${decks[deckName].title} (${decks[deckName].questions.length})`} 
             onPress={() => this.props.navigation.navigate('DeckDetail',{ deckName: deckName })} />
         ))}
         <ListItem
