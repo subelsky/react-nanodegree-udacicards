@@ -7,12 +7,14 @@ import {
   setLocalNotification
 } from '../utils/notifications'
 
+const defaultState = {
+  cardNum: 1,
+  numCorrect: 0,
+  answerShowing: false
+}
+
 class Quiz extends React.Component {
-  state = {
-    cardNum: 1,
-    numCorrect: 0,
-    answerShowing: false
-  }
+  state = Object.assign({},defaultState)
 
   nextCard() {
     this.setState((prevState) => ({ 
@@ -30,6 +32,10 @@ class Quiz extends React.Component {
     this.nextCard()
   }
 
+  reset() {
+    this.setState(() => defaultState)
+  }
+
   render() {
     const { navigation, questions } = this.props
     const { deckName } = navigation.state.params
@@ -41,10 +47,16 @@ class Quiz extends React.Component {
       return (
         <View style={styles.container}>
           <Text h2>You answered {this.state.numCorrect} question(s) correctly out of {questions.length} total.</Text>
+
           <Button
             buttonStyle={styles.backButton}
             onPress={() => navigation.navigate('DeckDetail', { deckName })} 
             title={`Back to ${deckName}`} />
+
+          <Button
+            buttonStyle={styles.backButton}
+            onPress={() => this.reset()}
+            title='Reset Quiz' />
         </View>
       )
     }
